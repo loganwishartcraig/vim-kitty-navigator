@@ -30,6 +30,7 @@ function! s:KittyCommand(args)
   let pw = get(g:, 'kitty_navigator_password', 0)
   let pw_s = pw != "" ? '--password="' . pw . '" ' : ''
   let cmd = 'kitty @ ' . pw_s . a:args
+  echo cmd
   return system(cmd)
 endfunction
 
@@ -55,10 +56,11 @@ function! s:KittyAwareNavigate(direction)
     \   "k": "top",
     \   "l": "right"
     \ }
-    let args = 'kitten neighboring_window.py' . ' ' . mappings[a:direction]
-    silent call s:KittyCommand(args)
+    let args = 'focus-window --match=neighbor:' . mappings[a:direction]
+    call s:KittyCommand(args)
     let s:kitty_is_last_pane = 1
   else
     let s:kitty_is_last_pane = 0
   endif
 endfunction
+
