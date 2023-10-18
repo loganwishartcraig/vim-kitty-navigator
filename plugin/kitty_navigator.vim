@@ -30,7 +30,6 @@ function! s:KittyCommand(args)
   let pw = get(g:, 'kitty_navigator_password', 0)
   let pw_s = pw != "" ? '--password="' . pw . '" ' : ''
   let cmd = 'kitty @ ' . pw_s . a:args
-  echo cmd
   return system(cmd)
 endfunction
 
