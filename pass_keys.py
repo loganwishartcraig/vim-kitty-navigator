@@ -43,4 +43,4 @@ def handle_result(args, result, target_window_id, boss):
             window.write_to_child(encoded)
     else:
         print("focusing", direction)
-        boss.call_remote_control(window, ('focus-window', f'--match=neighbor:{direction}')) 
+        boss.call_remote_control(window, ('!focus-window', f'--match=neighbor:{direction}')) 
