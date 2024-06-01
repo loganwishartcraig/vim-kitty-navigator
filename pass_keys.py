@@ -34,7 +34,6 @@ def handle_result(args, result, target_window_id, boss):
     key_mapping = args[3]
     vim_id = args[4] if len(args) > 4 else "n?vim"
 
-    print("computing", direction)
     if window is None:
         return
     if is_window_vim(boss, window, vim_id):
@@ -42,5 +41,4 @@ def handle_result(args, result, target_window_id, boss):
             encoded = encode_key_mapping(window, keymap)
             window.write_to_child(encoded)
     else:
-        print("focusing", direction)
         boss.call_remote_control(window, ('!focus-window', f'--match=neighbor:{direction}')) 
